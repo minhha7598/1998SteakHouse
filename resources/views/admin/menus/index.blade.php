@@ -31,6 +31,10 @@
                                             class="py-3 px-6 text-xs font-bold tracking-wider text-left text-white uppercase dark:text-gray-400">
                                             Price
                                         </th>
+                                        <th scope="col"
+                                            class="py-3 px-6 text-xs font-bold tracking-wider text-left text-white uppercase dark:text-gray-400">
+                                            Quantity
+                                        </th>
                                         <th scope="col" class="py-3 px-6 text-xs font-bold tracking-wider text-left text-white uppercase dark:text-white">
                                             <span >Edit</span>
                                         </th>
@@ -50,6 +54,10 @@
                                             <td
                                                 class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 {{ $menu->price }}
+                                            </td>
+                                            <td
+                                                class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                {{ $menu->quantity }}
                                             </td>
                                             <td
                                                 class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">

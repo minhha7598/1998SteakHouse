@@ -139,7 +139,7 @@
     <script>
     var subTotalPriceUSD = document.getElementById("subTotalPriceUSD").value;
     var totalPriceUSD = document.getElementById("totalPriceUSD").value;
-
+   
     paypal.Button.render({
         // Configure environment
         env: 'sandbox',
@@ -196,14 +196,11 @@
                             @endif
                         ],
                         shipping_address: {
-                            recipient_name: 'Brian Robinson',
-                            line1: '4th Floor',
-                            line2: 'Unit #34',
-                            city: 'San Jose',
-                            country_code: 'US',
-                            postal_code: '95131',
-                            phone: '011862212345678',
-                            state: 'CA'
+                            "line1": "Eco Space, bellandur",
+                            "line2": "OuterRingRoad",
+                            "city": "Danang",
+                            "country_code": "VN",
+                            "postal_code": "21000"
                         }
                     }
                 }],
@@ -222,43 +219,43 @@
     }, '#paypal-button');
     </script>
     <script>
-  function decrement(e) {
-    const btn = e.target.parentNode.parentElement.querySelector(
-      'button[data-action="decrement"]'
-    );
-    const target = btn.nextElementSibling;
-    let value = Number(target.value);
-    if(value > 1){
-        value--;
-    }
-    target.value = value;
-  }
+        function decrement(e) {
+            const btn = e.target.parentNode.parentElement.querySelector(
+            'button[data-action="decrement"]'
+            );
+            const target = btn.nextElementSibling;
+            let value = Number(target.value);
+            if(value > 1){
+                value--;
+            }
+            target.value = value;
+        }
 
-  function increment(e) {
-    const btn = e.target.parentNode.parentElement.querySelector(
-      'button[data-action="decrement"]'
-    );
-    const target = btn.nextElementSibling;
-    let value = Number(target.value);
-    value++;
-    target.value = value;
-  }
+        function increment(e) {
+            const btn = e.target.parentNode.parentElement.querySelector(
+            'button[data-action="decrement"]'
+            );
+            const target = btn.nextElementSibling;
+            let value = Number(target.value);
+            value++;
+            target.value = value;
+        }
 
-  const decrementButtons = document.querySelectorAll(
-    `button[data-action="decrement"]`
-  );
+        const decrementButtons = document.querySelectorAll(
+            `button[data-action="decrement"]`
+        );
 
-  const incrementButtons = document.querySelectorAll(
-    `button[data-action="increment"]`
-  );
+        const incrementButtons = document.querySelectorAll(
+            `button[data-action="increment"]`
+        );
 
-  decrementButtons.forEach(btn => {
-    btn.addEventListener("click", decrement);
-  });
+        decrementButtons.forEach(btn => {
+            btn.addEventListener("click", decrement);
+        });
 
-  incrementButtons.forEach(btn => {
-    btn.addEventListener("click", increment);
-  });
+        incrementButtons.forEach(btn => {
+            btn.addEventListener("click", increment);
+        });
 </script>
 </body>
 

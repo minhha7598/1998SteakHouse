@@ -8,8 +8,8 @@
         <h2
             class="text-3xl font-mono font-bold italic text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 pt-12">
             YOUR CART</h2>
-        <p class="text-xl text-black ">We pay by MoMo ATM or PayPal. Please check all information before
-            paying the bill !</p>
+            <p class="text-xl text-black ">Please check all products before
+            checking out !</p>
     </div>
 
     <div class="flex flex-row px-20 py-13">
@@ -90,7 +90,8 @@
                                                                     class=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
                                                                     <span class="m-auto text-3xl font-thin">−</span>
                                                                 </button>
-                                                                <input type="number" min="1" max="100" id="quantity-item-{{$product['productInfo']->id}}"
+                                                                <input type="number" min="1" max="100"
+                                                                    id="quantity-item-{{$product['productInfo']->id}}"
                                                                     class="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700  outline-none"
                                                                     name="custom-input-number"
                                                                     value="{{$product['quantity']}}"></input>
@@ -188,18 +189,18 @@
             @else
             <h2 class="text-bold py-auto">Total quantity:
                 {{session()->get('Cart')->totalQuantity}} items</h2>
-            <form class="mb-3 " method="POST" action="/payment-MoMo"
+            <!-- <form class="mb-3 " method="POST" action="/payment-MoMo"
                 onsubmit="return confirm('Are you sure CHECK OUT?');">
-                @csrf
+                @csrf -->
                 <span class="text-bold py-2">SubTotal:
                     &nbsp&nbsp $
                     {{number_format(session()->get('Cart')->totalPrice,2)}}
                 </span>
 
-                <input id="subTotalPriceUSD" name="subTotalPriceUSD" type="hidden"
+                <!-- <input id="subTotalPriceUSD" name="subTotalPriceUSD" type="hidden"
                     value="{{number_format(session()->get('Cart')->totalPrice,2)}}">
                 <input id="totalPriceUSD" name="totalPriceUSD" type="hidden"
-                    value="{{number_format(number_format(session()->get('Cart')->totalPrice,2) + 1.00, 2)}}">
+                    value="{{number_format(number_format(session()->get('Cart')->totalPrice,2) + 1.00, 2)}}"> -->
 
                 <span class=" text-bold">
                     ({{number_format(session()->get('Cart')->totalPrice,2) * 23500}} VND)
@@ -209,13 +210,17 @@
                 <h2 class="text-bold py-2">Estimated total: &nbsp&nbsp $
                     {{number_format(number_format(session()->get('Cart')->totalPrice,2) + 1.00,2)}}&nbsp&nbsp
                     ({{(number_format(session()->get('Cart')->totalPrice,2)+ 1.00) * 23500}} VND) </h2>
-                <input name="totalPrice" type="hidden"
-                    value="{{(number_format(session()->get('Cart')->totalPrice,2)-1) * 23500}}">
+                <!-- <input name="totalPrice" type="hidden"
+                    value="{{(number_format(session()->get('Cart')->totalPrice,2)-1) * 23500}}"> -->
                 <br>
-                <button name="payUrl" class="bg-fuchsia-500 w-52 px-4 py-2 borderbg-fuchsia-500 text-white"
-                    type="submit"><span class="font-bold">MOMO</span> checkout</button>
-            </form>
-            <div id="paypal-button"></div>
+                <!-- <button name="payUrl" class="bg-fuchsia-500 w-52 px-4 py-2 borderbg-fuchsia-500 text-white"
+                    type="submit"><span class="font-bold">MOMO</span> checkout</button> -->
+            <!-- </form> -->
+            <!-- <div id="paypal-button"></div> -->
+            <button
+                class="bg-fuchsia-500 w-52 px-4 py-2 borderbg-fuchsia-500 text-white">
+                <a href="{{ route('checkOut') }}">CHECK OUT</a>
+            </button>
             @endif
             @endif
         </div>

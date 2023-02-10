@@ -37,9 +37,17 @@ class CheckoutController extends Controller
         $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
 
         //Information
-        $orderInfo = "Payment with MoMo";
+        $info = $request->all();
+        $cart = $request->session()->get('Cart');
+        $orderInfo =  "First Name: ".$info['First_Name'].", Phone Number: ".$info['Phone_number'].", Address: ".$info['Address'].", Email: ".$info['Email'].", Country: ".$info['Country'].", Description: ".$info['Description'].", Delivery: ".$info['Delivery'].", Total quantiy: ".$info['totalQuantity'].", subTotalPriceUSD: ".$info['subTotalPriceUSD']." USD, Total Price USD: ".$info['totalPriceUSD']." USD, Total price: ".$info['totalPrice']." VND" ;
 
-
+        //Business logic
+        foreach($cart->products as $key=>$value)
+        {
+            $quantity = Menu::where('id', $key)->first()->quantity;
+            $newQuantity = $quantity - $value['quantity'];
+            Menu::where('id', $key)->update(['quantity' => $newQuantity]);;
+        }
 
         $amount = $request->input('totalPrice');
         $orderId = time() . "";
@@ -72,5 +80,10 @@ class CheckoutController extends Controller
         //dd($result);
        // header('Location: ' . $jsonResult['payUrl']);
         return redirect()->to($jsonResult['payUrl']);
+    }
+
+    public function checkOut(Request $request)
+    {
+        return view('cart.checkout');
     }
 }

@@ -27,6 +27,7 @@ Route::get('/saveCart/{id}/{quantity}', [CartController::class, 'saveCart']);
 Route::get('/removeCart/{id}/{quantity}', [CartController::class, 'removeCart']);
 Route::get('/clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
 Route::get('/detail/{id}', [CartController::class, 'detail']);
+Route::get('/checkOut', [CheckoutController::class, 'checkOut'])->name('checkOut');
 Route::post('/payment-MoMo', [CheckoutController::class, 'paymentMoMo'])->name('paymentMoMo');
 
 //Dashboard
