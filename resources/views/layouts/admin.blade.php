@@ -39,6 +39,10 @@
             </div>
             <nav :class="{'block': open, 'hidden': !open}"
                 class="flex-grow px-4 pb-4 md:block md:pb-0 md:overflow-y-auto">
+                <x-admin-nav-link :href="route('admin.index')"
+                    :active="request()->routeIs('admin.index')">
+                    {{ __('Dashboard') }}
+                </x-admin-nav-link>
                 <x-admin-nav-link :href="route('admin.categories.index')"
                     :active="request()->routeIs('admin.categories.index')">
                     {{ __('Categories') }}
@@ -53,6 +57,10 @@
                 <x-admin-nav-link :href="route('admin.reservations.index')"
                     :active="request()->routeIs('admin.reservations.index')">
                     {{ __('Reservations') }}
+                    <x-admin-nav-link :href="route('admin.orderList')"
+                    :active="request()->routeIs('admin.orderList')">
+                    {{ __('Orders') }}
+                </x-admin-nav-link>
                 </x-admin-nav-link>
                 <div @click.away="open = false" class="relative" x-data="{ open: false }">
                     <button @click="open = !open"

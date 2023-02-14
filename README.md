@@ -10,6 +10,12 @@ Create db instance
 - php artisan storage:link
 - php artisan db:seed
 
+Login:
+- Admin: email: admin@gmail.com 
+        password: password
+- User: email: user@gmail.com 
+        password: password
+
 Test payment MOMO
 - Số thẻ: 9704 0000 0000 0018	
 - Hạn ghi trên thẻ: 03/07

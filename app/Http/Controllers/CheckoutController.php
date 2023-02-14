@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Menu;
+use App\Models\OrderMenu;
+use App\Models\Order;
+use Carbon\Carbon;
 
 class CheckoutController extends Controller
 {
@@ -29,6 +32,14 @@ class CheckoutController extends Controller
     public function paymentMoMo(Request $request)
     {
         //include "../common/helper.php";
+        $validated = $request->validate([
+            'firstName' => ['required'],
+            'lastName' => ['required'],
+            'email' => ['required', 'email'],
+            'phoneNumber' => ['required'],
+            'address' => ['required'],
+            'country' => ['required'],
+        ]);
 
         $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
 
@@ -39,14 +50,42 @@ class CheckoutController extends Controller
         //Information
         $info = $request->all();
         $cart = $request->session()->get('Cart');
-        $orderInfo =  "First Name: ".$info['First_Name'].", Phone Number: ".$info['Phone_number'].", Address: ".$info['Address'].", Email: ".$info['Email'].", Country: ".$info['Country'].", Description: ".$info['Description'].", Delivery: ".$info['Delivery'].", Total quantiy: ".$info['totalQuantity'].", subTotalPriceUSD: ".$info['subTotalPriceUSD']." USD, Total Price USD: ".$info['totalPriceUSD']." USD, Total price: ".$info['totalPrice']." VND" ;
+       // dd($cart, $info);
+        $orderInfo =  "First Name: ".$info['firstName'].", Phone Number: ".$info['phoneNumber'].", Address: ".$info['address'].", Email: ".$info['email'].", Country: ".$info['country'].", Description: ".$info['description'].", Delivery: ".$info['delivery'].", Total quantiy: ".$info['totalQuantity'].", subTotalPriceUSD: ".$info['subTotalPriceUSD']." USD, Total Price USD: ".$info['totalPriceUSD']." USD, Total price: ".$info['totalPrice']." VND" ;
 
         //Business logic
         foreach($cart->products as $key=>$value)
         {
             $quantity = Menu::where('id', $key)->first()->quantity;
             $newQuantity = $quantity - $value['quantity'];
-            Menu::where('id', $key)->update(['quantity' => $newQuantity]);;
+            Menu::where('id', $key)->update(['quantity' => $newQuantity]);
+        }
+        //Order
+        $orderRecord = Order::create([
+            'first_name' => $info['firstName'],
+            'last_name' => $info['lastName'],
+            'address' => $info['address'],
+            'country' => $info['country'],
+            'email' => $info['email'],
+            'phone_number' => $info['phoneNumber'],
+            'delivery' => $info['delivery'],
+            'description' => $info['description'],
+            'date' => Carbon::now(),
+            'total_quantity' => $info['totalQuantity'],
+            'total_price_usd' => $info['subTotalPriceUSD'],
+            'total_price' => $info['totalPrice'],
+            'is_online' => '1',
+        ]);
+       
+        //Order Menu
+        foreach($cart->products as $key=>$value)
+        {
+            OrderMenu::create([
+                'order_quantity' => $value['quantity'],
+                'order_price' => $value['price'],
+                'menu_id' => $key,
+                'order_id' => $orderRecord->id,
+            ]);
         }
 
         $amount = $request->input('totalPrice');

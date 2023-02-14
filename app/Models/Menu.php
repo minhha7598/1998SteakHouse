@@ -15,4 +15,9 @@ class Menu extends Model
     {
         return $this->belongsToMany(Category::class, 'category_menu');
     }
+
+    public function order_menu()
+    {
+        return $this->belongsTo(Order::class, 'menu_id');
+    }
 }

@@ -77,12 +77,6 @@
                                                 <td
                                                     class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                     <div class="pr-8 flex ">
-
-                                                        <!-- <input type="number" min="1" max="100"
-                                                            id="quantity-item-{{$product['productInfo']->id}}"
-                                                            class="qty"
-                                                            class="focus:outline-none bg-gray-100 border h-16 w-16 rounded text-sm px-2 mx-2"
-                                                            value="{{$product['quantity']}}"> -->
                                                         <div class="custom-number-input h-10 w-32">
                                                             <div
                                                                 class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
@@ -138,6 +132,7 @@
                                 </div>
                                 </table>
                                 <div class=" text-center mb-6">
+                                    @if(session()->has('Cart'))
                                     @if(session()->get('Cart')->products == null)
                                     <h3 class="text-xl text-bold mb-3">Your shopping cart is empty, let's add
                                         some favorites.</h3>
@@ -145,6 +140,8 @@
                                         <a class="antialiased" href="{{ route('menus.index') }}">Start visit our
                                             menu</a></button>
                                     @endif
+                                    @endif
+                                    @if(session()->has('Cart'))
                                     @if(session()->get('Cart')->products != null)
 
                                     <a class="text-black hover:underline text-xl antialiased"
@@ -152,6 +149,7 @@
                                         shopping</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                     <!-- <a class="text-black hover:underline text-xl antialiased"
                                             href="{{ route('cart.clear') }}">Delete All</a> -->
+                                    @endif
                                     @endif
                                 </div>
                             </div>
@@ -224,6 +222,7 @@
             @endif
             @endif
         </div>
+        
 
     </div>
 

@@ -32,9 +32,6 @@
             <div class="flex flex-wrap items-center sm:-mx-3">
                 <div class="w-full md:w-1/2 md:px-3">
                     <div class="w-full pb-6 space-y-4 sm:max-w-md lg:max-w-lg lg:space-y-4 lg:pr-0 md:pb-0">
-                        <!-- <h1
-              class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl"
-            > -->
                         <h3 class="text-xl font-bold">ABOUT US
                         </h3>
                         <h2
@@ -118,12 +115,6 @@
                             src="https://fujifoods.vn/wp-content/themes/yootheme/cache/Bit-tet-bo-Fuji-2-a25dcb20.jpeg" />
                     </div>
                 </div>
-                <!-- <div class="w-full px-3 mb-12 lg:w-1/2 order-0 lg:order-1 lg:mb-0 rounded-md shadow-xl sm:rounded-xl">
-                    <img
-                        class="mx-auto sm:max-w-sm lg:max-w-full"
-                        src="https://fujifoods.vn/wp-content/themes/yootheme/cache/Bit-tet-bo-Fuji-2-a25dcb20.jpeg"
-                        alt="feature image">
-                </div> -->
             </div>
         </div>
     </section>

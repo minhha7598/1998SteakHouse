@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Admin\TableController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\ExcelController;
 use App\Http\Controllers\FE\CategoryController as FE_CategoryController;
 use App\Http\Controllers\FE\MenuController as FE_MenuController;
 use App\Http\Controllers\FE\ReservationController as FE_ReservationController;
@@ -29,6 +31,7 @@ Route::get('/clear', [CartController::class, 'clearAllCart'])->name('cart.clear'
 Route::get('/detail/{id}', [CartController::class, 'detail']);
 Route::get('/checkOut', [CheckoutController::class, 'checkOut'])->name('checkOut');
 Route::post('/payment-MoMo', [CheckoutController::class, 'paymentMoMo'])->name('paymentMoMo');
+
 
 //Dashboard
 Route::get('/login/successfully', function () {
@@ -62,6 +65,11 @@ Route::middleware(['auth', 'admin'])
         Route::resource('/menus', MenuController::class);
         Route::resource('/tables', TableController::class);
         Route::resource('/reservations', ReservationController::class);
+        Route::get('/order-list', [OrderController::class, 'index'])->name('orderList');
+        Route::get('/order-detail/{id}', [OrderController::class, 'detail'])->name('orderDetail');
+        Route::post('/import', [ExcelController::class, 'import'])->name('import');
+
+        
     });
 
 require __DIR__ . '/auth.php';

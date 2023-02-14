@@ -38,20 +38,26 @@
                                                         for="grid-first-name">
                                                         First Name
                                                     </label>
-                                                    <input name="First Name"
+                                                    <input name="firstName"
                                                         class="appearance-none block w-full text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                                         id="firsttName" type="text" placeholder="Minh Hung">
-                                                    </p>
+
+                                                    @error('firstName')
+                                                    <div class="text-sm text-red-400">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                                 <div class="w-full md:w-1/2 px-3">
-                                                    <label 
+                                                    <label
                                                         class="block uppercase tracking-widetext-gray-700 text-xs font-bold mb-2"
                                                         for="grid-last-name">
                                                         Last Name
                                                     </label>
-                                                    <input name="Last Name"
+                                                    <input name="lastName"
                                                         class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                                         id="lastName" type="text" placeholder="Ha">
+                                                    @error('lastName')
+                                                    <div class="text-sm text-red-400">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="flex flex-wrap -mx-3 mb-3">
@@ -61,11 +67,12 @@
                                                         for="grid-password">
                                                         Phone number
                                                     </label>
-                                                    <input name="Phone number" 
+                                                    <input name="phoneNumber"
                                                         class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                                         id="phoneNumber" type="text" placeholder="+84 905 123 456">
-                                                        <!-- <input name="Phone number" type="hidden"
-                                                        id="phoneNumber"> -->
+                                                    @error('phoneNumber')
+                                                    <div class="text-sm text-red-400">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="flex flex-wrap -mx-3 mb-3">
@@ -75,10 +82,12 @@
                                                         for="grid-password">
                                                         Email
                                                     </label>
-                                                    <input name="Email"
+                                                    <input name="email"
                                                         class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                                        id="email" type="text"
-                                                        placeholder="hungminhha751998@gmail.com">
+                                                        id="email" type="text" placeholder="hungminhha751998@gmail.com">
+                                                    @error('email')
+                                                    <div class="text-sm text-red-400">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="flex flex-wrap -mx-3 mb-3">
@@ -88,10 +97,13 @@
                                                         for="grid-city">
                                                         Address
                                                     </label>
-                                                    <input  name="Address"
+                                                    <input name="address"
                                                         class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                                         id="address" type="text"
                                                         placeholder="01 Dien Bien Phu street, Thanh Khe district">
+                                                    @error('address')
+                                                    <div class="text-sm text-red-400">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                                 <div class="w-full md:w-1/3 px-3 mb-3 md:mb-0">
                                                     <label
@@ -99,9 +111,12 @@
                                                         for="grid-city">
                                                         Country
                                                     </label>
-                                                    <input name="Country"
+                                                    <input name="country"
                                                         class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                                         id="country" type="text" placeholder="Viet Nam">
+                                                    @error('country')
+                                                    <div class="text-sm text-red-400">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                                 <div class="w-full md:w-1/3 px-3 mb-3 md:mb-0">
                                                     <label
@@ -110,7 +125,7 @@
                                                         Delivery
                                                     </label>
                                                     <div class="relative">
-                                                        <select name="Delivery"
+                                                        <select name="delivery"
                                                             class="block appearance-none w-full  border border-gray-200text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                                             id="grid-state">
                                                             <option>Fast (2-4 days)</option>
@@ -120,12 +135,12 @@
                                                     </div>
                                                 </div>
                                                 <div class="w-full md:w-1/3 px-3 md:mb-0">
-                                                    <label 
+                                                    <label
                                                         class="block uppercase tracking-widetext-gray-700 text-xs font-bold mb-2"
                                                         for="grid-zip">
                                                         Description
                                                     </label>
-                                                    <textarea name="Description" id="description"
+                                                    <textarea name="description" id="description"
                                                         class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"></textarea>
                                                 </div>
                                             </div>
@@ -141,12 +156,9 @@
                                             menu</a></button>
                                     @endif
                                     @if(session()->get('Cart')->products != null)
-
                                     <a class="text-black hover:underline text-xl antialiased"
                                         href="{{ route('menus.index') }}">Continue
                                         shopping</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                    <!-- <a class="text-black hover:underline text-xl antialiased"
-                                            href="{{ route('cart.clear') }}">Delete All</a> -->
                                     @endif
                                 </div>
                             </div>
@@ -182,8 +194,6 @@
                 0 &nbsp&nbsp
                 (0 VND) </h2>
             @else
-
-
             <h2 class="text-bold py-auto">Total quantity:
                 {{session()->get('Cart')->totalQuantity}} items</h2>
             <input id="totalQuantity" name="totalQuantity" type="hidden"
@@ -213,6 +223,8 @@
                 type="submit"><span class="font-bold">MOMO</span> checkout</button>
             </form>
             <div id="paypal-button"></div>
+            <p id="error" class="hidden">Please check the checkbox</p>
+            <label><input id="check" type="checkbox"> Check here to continue</label>
             @endif
             @endif
         </div>
